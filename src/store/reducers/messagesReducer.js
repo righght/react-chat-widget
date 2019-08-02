@@ -6,25 +6,45 @@ import { MESSAGE_SENDER } from '@constants';
 
 import * as actionTypes from '../actions/actionTypes';
 
-const initialState = List([]);
+const initialState = { messages: List([]), unshiftIndex: 0 };
+// const initialState =List([]);
 
 const messagesReducer = {
+  [actionTypes.ADD_COMPONENT_TOP]: (state, { component, props, showAvatar }) => {
+    return {messages: state.messages.unshift(createComponentMessage(component, props, showAvatar)), unshiftIndex: --state.unshiftIndex }
+  },
+
   [actionTypes.ADD_NEW_USER_MESSAGE]: (state, { text }) =>
-    state.push(createNewMessage(text, MESSAGE_SENDER.CLIENT)),
+    // state.messages.push(createNewMessage(text, MESSAGE_SENDER.CLIENT))
+  {
+    return { messages: state.messages.push(createNewMessage(text, MESSAGE_SENDER.CLIENT)), unshiftIndex: state.unshiftIndex }
+  },
 
   [actionTypes.ADD_NEW_RESPONSE_MESSAGE]: (state, { text }) =>
-    state.push(createNewMessage(text, MESSAGE_SENDER.RESPONSE)),
-
+  // state.messages.push(createNewMessage(text, MESSAGE_SENDER.RESPONSE))
+  {
+    return { messages: state.messages.push(createNewMessage(text, MESSAGE_SENDER.RESPONSE)), unshiftIndex:state.unshiftIndex }
+  },
+    
   [actionTypes.ADD_NEW_LINK_SNIPPET]: (state, { link }) =>
-    state.push(createLinkSnippet(link, MESSAGE_SENDER.RESPONSE)),
-
+  // state.messages.push(createLinkSnippet(link, MESSAGE_SENDER.RESPONSE)),
+  {
+    return { messages: state.messages.push(createLinkSnippet(link, MESSAGE_SENDER.RESPONSE)), unshiftIndex: state.unshiftIndex }
+  },
+    
   [actionTypes.ADD_COMPONENT_MESSAGE]: (state, { component, props, showAvatar }) =>
-    state.push(createComponentMessage(component, props, showAvatar)),
+    // state.messages.push(createComponentMessage(component, props, showAvatar)),
+  {
+    return  { messages: state.messages.push(createComponentMessage(component, props, showAvatar)), unshiftIndex: state.unshiftIndex }
+  },
 
-  [actionTypes.DROP_MESSAGES]: () => List([]),
+  [actionTypes.DROP_MESSAGES]: () => initialState,
 
   [actionTypes.HIDE_AVATAR]: (state, { index }) =>
-    state.update(index, message => message.set('showAvatar', false))
+    // state.messages.update(index, message => message.set('showAvatar', false))
+  {
+    return { messages: state.messages.update(index, message => message.set('showAvatar', false)), unshiftIndex: state.unshiftIndex }
+  }
 }
 
 export default (state = initialState, action) => createReducer(messagesReducer, state, action);

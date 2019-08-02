@@ -43,7 +43,7 @@ ConnectedWidget.defaultProps = {
   showCloseButton: true,
   fullScreenMode: false,
   badge: 0,
-  autofocus: true
+  autofocus: true,
 };
 
 export default ConnectedWidget;

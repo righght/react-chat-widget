@@ -32,3 +32,7 @@ export function dropMessages() {
 export function isWidgetOpened() {
   return store.getState().behavior.get('showChat');
 }
+
+export function addCompTop(component, props, showAvatar = false) {
+  store.dispatch(actions.addCompTop(component, props, showAvatar));
+}

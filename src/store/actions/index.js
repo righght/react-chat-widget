@@ -53,3 +53,12 @@ export function hideAvatar() {
     type: actions.HIDE_AVATAR
   };
 }
+
+export function addCompTop(component, props, showAvatar) {
+  return {
+    type: actions.ADD_COMPONENT_TOP,
+    component,
+    props,
+    showAvatar,
+  };
+}

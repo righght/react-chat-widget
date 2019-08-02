@@ -25,6 +25,8 @@ const WidgetLayout = props => (
         disabledInput={props.disabledInput}
         autofocus={props.autofocus}
         titleAvatar={props.titleAvatar}
+
+        getMessId={props.getMessId}
       />
     }
     {props.customLauncher ?

@@ -13,12 +13,17 @@ const scrollToBottom = () => {
 };
 
 class Messages extends Component {
+  constructor(props) {
+    super(props)
+  }
+  
+
   componentDidMount() {
     scrollToBottom();
   }
 
   componentDidUpdate() {
-    scrollToBottom();
+    // scrollToBottom();
   }
 
   getComponentToRender = message => {
@@ -38,17 +43,22 @@ class Messages extends Component {
   }
 
   render() {
-    const { messages, profileAvatar } = this.props;
+    const { messages, profileAvatar, unshiftIndex } = this.props;
+    let uns = unshiftIndex;
     return (
       <div id="messages" className="rcw-messages-container">
-        {messages.map((message, index) =>
-          <div className="rcw-message" key={index}>
-            {profileAvatar &&
+        {messages.map((message, index) => {         
+          // let id = message.get("props") && message.get('props').id;
+          // if(id) index = id;
+          index = uns++;
+
+          return <div className="rcw-message" key={index}>
+            {/* {profileAvatar &&
               this.shouldRenderAvatar(message, index) &&
               <img src={profileAvatar} className="rcw-avatar" alt="profile" />
-            }
+            } */}
             {this.getComponentToRender(message)}
-          </div>
+          </div>}
         )}
       </div>
     );
@@ -61,5 +71,6 @@ Messages.propTypes = {
 };
 
 export default connect(store => ({
-  messages: store.messages
+  messages: store.messages.messages,
+  unshiftIndex: store.messages.unshiftIndex
 }))(Messages);
