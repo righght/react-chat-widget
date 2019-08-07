@@ -19,6 +19,8 @@ const ConnectedWidget = props =>
       badge={props.badge}
       autofocus={props.autofocus}
       customLauncher={props.launcher}
+
+      inputHeight={props.inputHeight}
     />
   </Provider>;
 
@@ -33,7 +35,7 @@ ConnectedWidget.propTypes = {
   fullScreenMode: PropTypes.bool,
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
-  launcher: PropTypes.func
+  launcher: PropTypes.func,
 };
 
 ConnectedWidget.defaultProps = {
@@ -41,7 +43,7 @@ ConnectedWidget.defaultProps = {
   subtitle: 'This is your chat subtitle',
   senderPlaceHolder: 'Type a message...',
   showCloseButton: true,
-  fullScreenMode: false,
+  fullScreenMode: true,
   badge: 0,
   autofocus: true,
 };

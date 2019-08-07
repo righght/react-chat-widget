@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import { toggleChat, addUserMessage, addCompTop } from '@actions';
 
 import WidgetLayout from './layout';
+
 import { renderCustomComponent } from '../../store/actions';
+import { toggleWidget} from '../../store/dispatcher';
 
 class Widget extends Component {
   constructor(props) {
@@ -38,6 +40,7 @@ class Widget extends Component {
   }
   /* <button onClick={(e) => e.target.style.display = "none"}>{props.kek}</button> */
   render() {
+    // toggleWidget()
     return (
         // <div>
         /* <button onClick={() => this.props.dispatch(addCompTop((props) => { return <div><button onClick={(e) => e.target.style.display = "none"}>{props.kek}</button></div>
@@ -58,6 +61,7 @@ class Widget extends Component {
           customLauncher={this.props.customLauncher}
 
           getMessId={this.getMessId}
+          inputHeight={this.props.inputHeight}
         />
         // </div>
     );

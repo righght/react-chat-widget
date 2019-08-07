@@ -25,6 +25,7 @@ const Conversation = props =>
       placeholder={props.senderPlaceHolder}
       disabledInput={props.disabledInput}
       autofocus={props.autofocus}
+      inputHeight={props.inputHeight}
     />
   </div>;
 

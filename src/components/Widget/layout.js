@@ -27,6 +27,7 @@ const WidgetLayout = props => (
         titleAvatar={props.titleAvatar}
 
         getMessId={props.getMessId}
+        inputHeight={props.inputHeight}
       />
     }
     {props.customLauncher ?
@@ -54,7 +55,7 @@ WidgetLayout.propTypes = {
   fullScreenMode: PropTypes.bool,
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
-  customLauncher: PropTypes.func
+  customLauncher: PropTypes.func,
 };
 
 export default connect(store => ({
