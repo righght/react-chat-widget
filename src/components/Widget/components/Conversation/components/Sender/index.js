@@ -6,11 +6,14 @@ import send from '@assets/send_button.svg';
 import './style.scss';
 
 function onChange(e, inputHeight = 300) {
-  console.log("onChange")
   if(e.target.scrollHeight >= inputHeight)
     return;
   e.target.style.height = 0;
   e.target.style.height = e.target.scrollHeight + "px";
+
+  // move messages container to top/bottom while textarea rising
+  document.getElementsByClassName("rcw-conversation-container")[0].style.paddingBottom  = e.target.parentElement.offsetHeight + 'px';
+  window.scrollTo(0,document.body.scrollHeight); // scrollToBottom
 }
 
 function onKeyPress(e) {
@@ -21,18 +24,19 @@ function onKeyPress(e) {
 }
 
 const Sender = ({ sendMessage, placeholder, disabledInput, autofocus, inputHeight }) =>
-  <form className="rcw-sender" 
+  <form className="rcw-sender"
     onSubmit={(e) => {
       e.target.firstChild.style.height = "0";
+      document.getElementsByClassName("rcw-conversation-container")[0].style.paddingBottom  = e.target.offsetHeight + 'px';
       sendMessage(e)
     }}>
 
-    <textarea id="rcw-new-message" className="rcw-new-message" 
-      onChange={(e) => {onChange(e, inputHeight) }} 
+    <textarea id="rcw-new-message" className="rcw-new-message"
+      onChange={(e) => {onChange(e, inputHeight) }}
       onKeyPress={onKeyPress}
       name="message" placeholder={placeholder} disabled={disabledInput} autoFocus={autofocus} autoComplete="off"/>
     <button type="submit" className="rcw-send">
-      <img src={send} className="rcw-send-icon" alt="send" />
+      <img src={send} className="rcw-send-icon" alt="send"/>
     </button>
   </form>;
 
